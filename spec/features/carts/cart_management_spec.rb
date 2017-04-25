@@ -25,7 +25,7 @@ feature "Visitor can add products to cart" do
 
     visit '/'
     expect(page).to have_selector("div", text: data[:name])
-    click_link 'Add to cart'
+    all('a', :text => 'Add to cart').first.click
     expect(page).to have_content("My Cart (1)")
   end
 end
@@ -55,7 +55,7 @@ feature "User can add products to cart" do
 
     user_sign_in user
     expect(page).to have_selector("div", text: data[:name])
-    all('a', :text => 'Add to cart').last.click
+    all('a', :text => 'Add to cart').first.click
     # click_link 'Add to cart'
     expect(page).to have_content("My Cart (1)")
   end
@@ -86,7 +86,7 @@ feature "Products persist in cart" do
 
     user_sign_in user
     expect(page).to have_selector("div", text: data[:name])
-    all('a', :text => 'Add to cart').last.click
+    all('a', :text => 'Add to cart').first.click
     expect(page).to have_content 'Product successfully added to cart'
     click_link 'Sign Out'
     user_sign_in user
@@ -119,7 +119,7 @@ feature "User can check items in their cart" do
 
     user_sign_in user
     expect(page).to have_selector("div", text: data[:name])
-    all('a', :text => 'Add to cart').last.click
+    all('a', :text => 'Add to cart').first.click
     expect(page).to have_content("My Cart (1)")
     click_link 'My Cart (1)'
     within('tr.cart_item') do
@@ -154,7 +154,7 @@ feature "User can remove products from cart" do
 
     user_sign_in user
     expect(page).to have_selector("div", text: data[:name])
-    all('a', :text => 'Add to cart').last.click
+    all('a', :text => 'Add to cart').first.click
     expect(page).to have_content("My Cart (1)")
     click_link 'My Cart (1)'
     click_link 'Remove from cart'
@@ -179,7 +179,7 @@ feature "User can remove products from cart" do
     click_link 'Sign Out'
 
     visit '/'
-    all('a', :text => 'Add to cart').last.click
+    all('a', :text => 'Add to cart').first.click
     expect(page).to have_content("My Cart (1)")
     click_link 'My Cart (1)'
     click_link 'Remove from cart'
