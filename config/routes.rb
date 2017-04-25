@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get 'cart/remove_item' => 'carts#remove_item', as: :remove_item
   get 'users/:id/orders/new' => 'orders#new', as: :new_order
   get 'users/:id/orders/create' => 'orders#create', as: :order_confirmation
+  get 'users/:id/orders/display' => 'orders#show', as: :order_summary
+
+  get 'fetch_products' => 'home#load_products'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
