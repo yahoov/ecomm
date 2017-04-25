@@ -1,0 +1,9 @@
+<% if @products.any? %>
+	$('.products_grid').append('<%= j render(partial: "product", collection: @products, as: :product) %>');
+
+	<% if @last_dt %>
+		$('.products_grid').attr("data", "<%= @last_dt %>");
+	<% end %>
+<% else %>
+	window.fetchMore = false;
+<% end %>
