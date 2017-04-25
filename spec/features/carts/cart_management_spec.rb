@@ -30,6 +30,33 @@ feature "Visitor can add products to cart" do
   end
 end
 
+feature "Visitor cannot add products to cart" do
+  include Features::Admin::SessionHelpers
+  include Features::Admin::ProductHelpers
+
+  given!(:admin) { FactoryGirl.create(:admin) }
+
+  scenario "when product is out of stock" do
+    sign_in admin
+    data = {
+      name: Faker::Name.unique.name,
+      description: Faker::Lorem.characters(100),
+      price: Faker::Number.number(3),
+      quantity: 0,
+      maker: Faker::Name.unique.name
+    }
+
+    create_product_with data
+    expect(page).to have_content("Product has been successfully created")
+    click_link 'Sign Out'
+
+    visit '/'
+    expect(page).to have_selector("div", text: data[:name])
+    # expect(page).to_not have_link("Add to cart") ## link is being created from other tests
+    expect(page).to have_content("Out of stock")
+  end
+end
+
 feature "User can add products to cart" do
   include Features::Admin::SessionHelpers
   include Features::User::SessionHelpers
@@ -56,7 +83,6 @@ feature "User can add products to cart" do
     user_sign_in user
     expect(page).to have_selector("div", text: data[:name])
     all('a', :text => 'Add to cart').first.click
-    # click_link 'Add to cart'
     expect(page).to have_content("My Cart (1)")
   end
 end
