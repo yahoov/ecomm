@@ -21,8 +21,8 @@ class OrdersController < ApplicationController
       # flash.keep(:success)
       redirect_to order_summary_path(order_id: order.id)
     else
-      flash[:alert] = 'Something went wrong. Please try again in sometime.'
-      flash.keep(:alert)
+      flash[:error] = 'Something went wrong. Please try again in sometime.'
+      flash.keep(:error)
       redirect_to new_order_path(current_user)
     end
   end

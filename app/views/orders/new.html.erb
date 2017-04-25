@@ -1,7 +1,8 @@
 <div class="order">
   <div class="cart_navs">
     <% if user_signed_in? %>
-      <%= link_to "Make Payment", order_confirmation_path(current_user), class: 'btn btn-info' %>
+      <%= link_to "Make Payment", "javascript:void(0)", class: 'btn btn-info', id: 'mk_pay',
+                                  data: { target: "#md_payment", toggle: "modal" } %>
     <% end %>
   </div>
 
@@ -51,4 +52,19 @@
       </tr>
     </tbody>
   </table>
+
+  <%= link_to "alias_to_make_payment", order_confirmation_path(current_user), id: 'alias_mk_pay' %>
+</div>
+
+<div class="modal fade" id="md_payment" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <br>
+        <p>
+          Redirecting you to payment gateway ...
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -33,7 +33,7 @@ feature "User can place order" do
     click_link 'My Cart (1)'
     click_link 'Proceed to checkout'
     expect(page).to have_content("Confirm Order")
-    click_link 'Make Payment'
+    click_link 'alias_to_make_payment'
     expect(page).to have_content("Your order has been successfully placed!")
   end
 end
@@ -68,7 +68,7 @@ feature "Order summary is displayed to the user after successfully placing order
     click_link 'My Cart (1)'
     click_link 'Proceed to checkout'
     expect(page).to have_content("Confirm Order")
-    click_link 'Make Payment'
+    click_link 'alias_to_make_payment'
     within('div.order_summary') do
       expect(page).to have_selector("a", text: data[:name])
       expect(page).to have_selector("td", text: '1')
