@@ -34,7 +34,7 @@ class OrderService
       Rails.logger.info "*************** Order exception: #{e} ***************"
     end
 
-    Product.decrement_stock(result)    
+    Product.decrement_stock(result)
 
     return result
   end
