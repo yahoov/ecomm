@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20170424115815) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -34,17 +37,17 @@ ActiveRecord::Schema.define(version: 20170424115815) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "carts", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer  "product_id",    limit: 4
-    t.integer  "quantity",      limit: 4,   default: 0
+    t.integer  "product_id"
+    t.integer  "quantity",                  default: 0
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.integer  "itemable_id",   limit: 4
+    t.integer  "itemable_id"
     t.string   "itemable_type", limit: 255
   end
 
@@ -52,22 +55,22 @@ ActiveRecord::Schema.define(version: 20170424115815) do
   add_index "items", ["product_id"], name: "index_items_on_cart_id_and_product_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
+    t.integer  "user_id"
     t.boolean  "fulfilled"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.float    "price",       limit: 24
-    t.float    "quantity",    limit: 24
+    t.text     "description"
+    t.float    "price"
+    t.float    "quantity"
     t.string   "maker",       limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "products", ["name"], name: "index_products_on_name", using: :btree
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 20170424115815) do
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
