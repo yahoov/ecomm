@@ -1,6 +1,7 @@
 body {
   padding: 1%;
   padding-top: 2px;
+  overflow-y: auto;
 }
 
 div.flash_messages {
@@ -96,6 +97,56 @@ div.products {
   }
 }
 
+div.products_grid {
+  width: 99%;
+  padding: 1%;
+  border: 1px solid;
+  margin-left: 2px;
+
+  div.product {
+    width: 47.7%;
+    height: 190px;
+    // padding: 2% 2.5%;
+    padding-top: 10px;
+    margin-top: 0;
+    margin-right: 2em;
+    margin-bottom: 1em;
+    background: ghostwhite;
+    -moz-box-shadow: 0px 3px 8px rgb(100,100,100);
+    -webkit-box-shadow: 0px 3px 8px rgb(100,100,100);
+    box-shadow: 0px 3px 8px rgb(100,100,100);
+
+    h3 {
+      color: cadetblue;
+    }
+
+    div.prd_lnks {
+      float: right;
+      font-size: 10pt;
+    }
+  }
+}
+
 div.cart {
   margin-top: 4em;
+}
+
+div#loading_txt {
+  display: none;
+  text-align: center;
+  font-size: 20px;
+  color: darksalmon;
+  margin-top: 5px;
+}
+
+div.ord_msg {
+  text-align: center;
+
+  label {
+    font-size: 20px;
+    background: #d1eab9;
+    color: green;
+    padding: 0px 10px;
+    border-radius: 5px;
+  }
 }
