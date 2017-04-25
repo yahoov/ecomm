@@ -10,7 +10,7 @@ c_scrolling = ->
   $(document).scroll ->
     console.log('here');
     dt = $('.products_grid').attr('data')
-    divHeight = $('body').height() - $('.products_grid').height() - 50
+    divHeight = $('body').height() - $('.products_grid').height()
     if window.fetchMore && scrollEnabled && ($('body').scrollTop() > divHeight)
       scrollEnabled = false
       $('#loading_txt').show()
@@ -34,8 +34,7 @@ $(document).ready ->
   if $('.products_grid').length > 0
     c_scrolling()
 
-document.addEventListener "turbolinks:load", ->
-  # click_mk_pay()
-
-  # if $('.products_grid').length > 0
-  #   c_scrolling()
+# document.addEventListener "turbolinks:load", ->
+#   click_mk_pay()
+#   if $('.products_grid').length > 0
+#     c_scrolling()
