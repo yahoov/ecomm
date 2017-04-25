@@ -1,11 +1,15 @@
-<div class="order">
+<% items = @order.items %>
+
+<div class="order_summary">
   <div class="cart_navs">
-    <% if user_signed_in? %>
-      <%= link_to "Make Payment", order_confirmation_path(current_user), class: 'btn btn-info' %>
-    <% end %>
+    <%= link_to "Continue Shopping", root_path, class: 'btn btn-primary' %>
   </div>
 
-  <h3>Confirm Order</h3>
+  <div class="ord_msg">
+    <label>Thank you! Your order has been successfully placed!</label>
+  </div>
+
+  <h3>Order Summary</h3>
 
   <table class="list_order_items table table-bordered tablesorter">
     <thead>
@@ -17,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @items.each do |item| %>
+      <% items.each do |item| %>
         <% product = Product.find(item.product_id) %>
         <tr id="cart_item-<%= item.id %>" class="cart_item">
           <td>
@@ -46,7 +50,7 @@
           <b>Grand Total</b>
         </td>
         <td>
-          <%= number_with_delimiter(grand_total(@items), locale: :en) %> INR
+          <%= number_with_delimiter(grand_total(items), locale: :en) %> INR
         </td>
       </tr>
     </tbody>
