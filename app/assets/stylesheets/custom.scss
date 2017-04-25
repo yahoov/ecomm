@@ -1,0 +1,101 @@
+body {
+  padding: 1%;
+  padding-top: 2px;
+}
+
+div.flash_messages {
+  position: absolute;
+  right: 1em;
+  text-align: center;
+  margin-top: 4em;
+  top: -34px;
+}
+
+div.m_navs {
+  float: right;
+  margin-right: 1em;
+  font-size: 12pt;
+}
+
+h2.h_m {
+  border-bottom: 2px solid;
+  background: aliceblue;
+  padding: 5px;
+  color: brown;
+  margin-top: 2px;
+}
+
+div#container {
+  margin-top: 3em;
+}
+
+div.account_form, div.product_form {
+  padding: 1%;
+  background: snow;
+  -moz-box-shadow: 0px 3px 8px rgb(100,100,100);
+  -webkit-box-shadow: 0px 3px 8px rgb(100,100,100);
+  box-shadow: 0px 3px 8px rgb(100,100,100);
+
+  h3 {
+    color: cadetblue;
+  }
+}
+
+div.account_form {
+  width: 40%;
+}
+
+div.product_form {
+  width: 60%;
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+div.prd_navs {
+  margin-top: 2em;
+  margin-left: 1em;
+  a {
+    font-size: 11pt;
+  }
+}
+
+.alert {
+  padding: 5px;
+}
+
+div.product {
+  width: 100%;
+  padding: 2%;
+  padding-top: 10px;
+  margin-top: 5em;
+  background: ghostwhite;
+  -moz-box-shadow: 0px 3px 8px rgb(100,100,100);
+  -webkit-box-shadow: 0px 3px 8px rgb(100,100,100);
+  box-shadow: 0px 3px 8px rgb(100,100,100);
+
+  h3 {
+    color: cadetblue;
+  }
+
+  div.prd_lnks {
+    float: right;
+    font-size: 10pt;
+  }
+}
+
+div.products {
+  width: 99%;
+  padding: 1%;
+  border: 1px solid;
+
+  div.product {
+    margin-top: 0;
+    margin-bottom: 2em;
+  }
+}
+
+div.cart {
+  margin-top: 4em;
+}

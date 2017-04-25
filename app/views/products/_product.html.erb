@@ -1,0 +1,42 @@
+<div class="product" id="product-<%= product.id %>">
+  <div class="prd_lnks">
+    <% if admin_signed_in? %>
+      <%= link_to "Edit", edit_product_path(product) %> |
+      <%= link_to "Delete", product, method: :delete, confirm: "Are you sure?" %>
+    <% else %>
+      <%= link_to "Add to cart", add_to_cart_path(product_id: product.id) %>
+    <% end %>
+  </div>
+
+  <div class="product_attribute row">
+    <h3><%= link_to product.name, product_path(product) %></h3>
+  </div>
+
+  <div class="row">
+    <div class="product_attribute row">
+      <div class="col-lg-10">
+        <div><b>Description</b></div>
+        <div><%= product.description %></div>
+      </div>
+    </div><br />
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="product_attribute col-lg-4">
+          <div class="col-lg-2"><b>Price</b></div>
+          <div class="col-lg-10"><%= number_with_delimiter(product.price, locale: :en) %> INR</div>
+        </div>
+
+        <div class="product_attribute col-lg-4">
+          <div class="col-lg-2"><b>Stock</b></div>
+          <div class="col-lg-10"><%= product.quantity.to_i %></div>
+        </div>
+
+        <div class="product_attribute col-lg-4">
+          <div class="col-lg-2"><b>Maker</b></div>
+          <div class="col-lg-10"><%= product.maker %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

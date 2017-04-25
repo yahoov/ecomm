@@ -1,0 +1,8 @@
+# Ecomm
+
+This is a demo app built on Ruby on Rails 4.
+
+## Usage Notes
+
+  - The app can have two types of account: user and admin
+  - To create an Admin account please visit - ```/admins/sign_in```

@@ -1,0 +1,54 @@
+<div class="order">
+  <div class="cart_navs">
+    <% if user_signed_in? %>
+      <%= link_to "Make Payment", order_confirmation_path(current_user), class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <h3>Confirm Order</h3>
+
+  <table class="list_order_items table table-bordered tablesorter">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <% product = Product.find(item.product_id) %>
+        <tr id="cart_item-<%= item.id %>" class="cart_item">
+          <td>
+            <%= link_to product.try(:name), product_path(item) %>
+          </td>
+          <td>
+            <%= number_with_delimiter(product.price, locale: :en) %> INR
+          </td>
+          <td>
+            <%= item.quantity.to_i %>
+          </td>
+          <td>
+            <%= number_with_delimiter((product.price * item.quantity), locale: :en) %> INR
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <table class="sub_list_cart_items table">
+    <tbody>
+      <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td>
+        <td>
+          <b>Grand Total</b>
+        </td>
+        <td>
+          <%= number_with_delimiter(grand_total(@items), locale: :en) %> INR
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

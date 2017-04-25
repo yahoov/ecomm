@@ -1,0 +1,48 @@
+<div class="product_form">
+  <h3>New Product</h3><br />
+
+  <%= form_for @product, html: { method: :post, id: 'new_product', class: 'form-horizontal' } do |f| %>
+
+    <div class="field form-group">
+      <%= f.label :name, "Name", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :name, autofocus: true, autocomplete: "off", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :description, "Description", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_area :description, autocomplete: "off", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :price, "Price", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :price, autocomplete: "off", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :quantity, "Quantity", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.number_field :quantity, autocomplete: "off", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :maker, "Maker", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :maker, autocomplete: "off", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="col-lg-3"></div>
+      <%= f.submit "Create Product", class: "col-lg-4 btn btn-default" %>
+    </div>
+  <% end %><br /><br />
+
+  <%= link_to 'Go Back', request.referer %>
+</div>

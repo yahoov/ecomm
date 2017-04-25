@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ecomm</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render partial: "layouts/flash_message", flash: flash %>
+
+    <% if user_signed_in? %>
+      <%= link_to content_tag(:h2, "Welcome to Ecomm!", class: "h_m"), root_path, title: "Home", style: "text-decoration: none;" %>
+    <% elsif admin_signed_in? %>
+      <%= link_to content_tag(:h2, "Welcome to Ecomm!", class: "h_m"), dashboard_path, title: "Home", style: "text-decoration: none;" %>
+    <% else %>
+      <%= link_to content_tag(:h2, "Welcome to Ecomm!", class: "h_m"), root_path, title: "Home", style: "text-decoration: none;" %>
+    <% end %>
+
+    <div class="m_navs">
+      <% if user_signed_in? %>
+        <span class="wl_m">Welcome, <%= current_user.first_name %>!</span> |
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %> |
+        <% if @count_of_cart_items == 0 %>
+          <span class="u_crt">My Cart (<%= @count_of_cart_items %>)</span>
+        <% else %>
+          <%= link_to content_tag(:span, "My Cart (#{@count_of_cart_items})", class: "u_crt"), show_cart_path %>
+        <% end %>
+      <% elsif admin_signed_in? %>
+        <span class="wl_m">Welcome, <%= current_admin.first_name %>!</span> |
+        <%= link_to "Sign Out", destroy_admin_session_path, method: :delete %>
+      <% else %>
+        <% unless (current_page?(new_user_session_path) || current_page?(new_admin_session_path) || current_page?(new_admin_registration_path)) %>
+          <%= link_to "Login", new_user_session_path %> |
+          <% if @count_of_cart_items == 0 %>
+            <span class="u_crt">My Cart (<%= @count_of_cart_items %>)</span>
+          <% else %>
+            <%= link_to content_tag(:span, "My Cart (#{@count_of_cart_items})", class: "u_crt"), show_cart_path %>
+          <% end %>
+        <% else %>
+          <%= link_to "Go To Home", root_path %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
