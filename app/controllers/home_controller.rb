@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   end
 
   def load_products
+    sleep 2
     last = if params[:last_dt].blank?
       Time.now + 1.second
     else
