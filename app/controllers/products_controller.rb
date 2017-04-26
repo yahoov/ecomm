@@ -16,11 +16,8 @@ class ProductsController < ApplicationController
       flash[:success] = "Product has been successfully created!"
       redirect_to product_path(@product)
     else
-      if @product.errors.full_messages.any?
-        flash[:error] = "Form validation errors!"
-      else
-        flash[:alert] = "Unable to execute the request, please try in sometime."
-      end
+      @product = Product.new
+      flash[:error] = "Unable to execute the request."
       render :new
     end
   end
@@ -36,6 +33,7 @@ class ProductsController < ApplicationController
       flash[:success] = "Product has been successfully updated!"
       redirect_to product_path(@product)
     else
+      @product = Product.find(params[:id])
       flash[:alert] = "Unable to execute the request, please try again."
       render 'edit'
     end
