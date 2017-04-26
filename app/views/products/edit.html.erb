@@ -2,6 +2,7 @@
   <h3>Edit Product</h3><br />
 
   <%= form_for @product, html: { method: :patch, id: 'edit_product', class: 'form-horizontal' } do |f| %>
+    <%= render "shared/error_messages", :target => f.object %>
 
     <div class="field form-group">
       <%= f.label :name, "Name", class: "col-lg-3 control-label" %>

@@ -12,11 +12,10 @@ class ProductsController < ApplicationController
   def create
     @product = ProductService.new(params[:product]).create_product
 
-    if @product
+    if @product.persisted?
       flash[:success] = "Product has been successfully created!"
       redirect_to product_path(@product)
     else
-      @product = Product.new
       flash[:error] = "Unable to execute the request."
       render :new
     end
@@ -29,12 +28,11 @@ class ProductsController < ApplicationController
   def update
     @product = ProductService.new(params[:product].merge(id: params[:id])).update_product
 
-    if @product
+    unless @product.changed? ## is not dirty
       flash[:success] = "Product has been successfully updated!"
       redirect_to product_path(@product)
     else
-      @product = Product.find(params[:id])
-      flash[:alert] = "Unable to execute the request, please try again."
+      flash[:error] = "Unable to execute the request."
       render 'edit'
     end
   end

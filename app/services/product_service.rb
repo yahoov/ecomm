@@ -22,23 +22,14 @@ class ProductService
 
   def product_setup
     product = Product.new product_attributes
-
-    if product.save
-      return product
-    else
-      return false
-    end
+    product.save
+    return product
   end
 
   def product_edits
     product = Product.find(product_id)
     product.update_attributes product_attributes
-
-    if product.update_attributes! product_attributes
-      return product
-    else
-      return false
-    end
+    return product
   end
 
   def product_attributes
