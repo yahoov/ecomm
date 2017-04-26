@@ -46,6 +46,6 @@ class ProductsController < ApplicationController
       flash[:alert] = "Unable to execute the request, please try in sometime."
     end
 
-    redirect_to request.referer
+    redirect_to dashboard_path
   end
 end
