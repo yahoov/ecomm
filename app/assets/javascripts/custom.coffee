@@ -8,10 +8,9 @@ click_mk_pay = ->
 c_scrolling = ->
   scrollEnabled = true
   $(document).scroll ->
-    console.log('here');
     dt = $('.products_grid').attr('data')
-    divHeight = $('body').height() - $('.products_grid').height()
-    if window.fetchMore && scrollEnabled && ($('body').scrollTop() > divHeight)
+    divHeight = $('body').height() - $('.products_grid').height() - 10
+    if window.fetchMore && scrollEnabled && ($(document).scrollTop() > divHeight)
       scrollEnabled = false
       $('#loading_txt').show()
       $.ajax
