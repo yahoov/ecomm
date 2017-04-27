@@ -5,9 +5,9 @@ class CartsController < ApplicationController
     @products = []
 
     if user_signed_in?
-      @products = Product.fetch_cart_products(current_user)
+      @products = ProductService.new({}).fetch_cart_products(current_user)
     else
-      @products = Product.fetch_session_cart_products(session[:cart]['products'])
+      @products = ProductService.new({}).fetch_session_cart_products(session[:cart]['products'])
     end
   end
 
