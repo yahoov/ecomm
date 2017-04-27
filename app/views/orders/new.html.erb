@@ -22,7 +22,7 @@
         <% product = Product.find(item.product_id) %>
         <tr id="cart_item-<%= item.id %>" class="cart_item">
           <td>
-            <%= link_to product.try(:name), product_path(item) %>
+            <%= link_to product.try(:name), product_path(product) %>
           </td>
           <td>
             <%= number_with_delimiter(product.price, locale: :en) %> INR
